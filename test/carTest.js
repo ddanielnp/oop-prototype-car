@@ -84,7 +84,7 @@ console.log(honda.passengers)
 assert.strictEqual(honda.passengers[honda.passengers.length - 1], passenger2, 'Passenger includes new passenger and is picked up')
 success()
 
-// normal case: check if passengers full and not able to pickup more
+// error case: check if passengers full and not able to pickup more
 console.log('Testing if passengers full and not able to pick up more')
 var passenger3 = 'dom'
 var passenger4 = 'shaun'
@@ -97,7 +97,7 @@ honda.pickUp(passenger6)
 assert.strictEqual(honda.pickUp('nicolas'), false, 'Unable to pick up more passengers')
 success()
 
-// error case: check if car is on and drop off passenger
+// error case: check if car is not on and drop off passenger
 console.log('Testing if car is not on and passenger is dropped off')
 honda.off()
 assert.strictEqual(honda.dropOff('daniel'), false, 'Passenger not able to drop off as car is not on')
@@ -107,3 +107,12 @@ success()
 console.log('Testing for the number of passengers in the car')
 assert.strictEqual(honda.passengerCount(), honda.passengers.length, 'Amount of passengers in the car')
 success()
+
+// error case: when car is running, unable to drop off someone not in passenger list
+console.log('Testing for drop off passenger not in passenger list while car is running')
+honda.start()
+assert.strictEqual(honda.dropOff('Bill'), false, 'Passenger not in passenger list' )
+success()
+
+// error case: check if driver seat is occupied and passenger can be drop off
+console.log('Testing for driver seat not occupied and passenger can be drop off')

@@ -60,11 +60,12 @@ class Car {
 
   dropOff (name) {
     var index = this.passengers.indexOf(name)
-    if (this.running === true && index >= 0) {
-      this.passengers.splice(index, 1)
-      console.log('driving to drop off ' + name)
-      return true
-    } return false
+      if (this.running === true && index >= 0 && this.seats - this.passengers.length > 6) {
+        this.passengers.splice(index, 1)
+        console.log('driving to drop off ' + name)
+        return true
+      } return false
+
   }
 
   passengerCount () {
